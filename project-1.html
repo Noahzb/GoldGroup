@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Recipe api</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Food Search</h1>
+
+    <!-- This form will be where users input data about the movies -->
+    <form id="food-form">
+      <label for="food-input">Search for a food</label>
+      <input type="text" id="food-input"><br>
+
+      <!-- This button will trigger our AJAX call -->
+      <input id="find-food" type="submit" value="Food Search">
+    </form>
+
+    <!-- We'll be dumping our JSON contents in here -->
+    <div id="food-view"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      // This .on("click") function will trigger the AJAX Call
+      $("#find-food").on("click", function(event) {
+        // event.preventDefault() can be used to prevent an event's default behavior.
+        // Here, it prevents the submit button from trying to submit a form when clicked
+        event.preventDefault();
+        // Here we grab the text from the input box
+        var food = $("#food-input").val();
+        // Here we construct our URL
+        var queryURL = "https://api.edamam.com/search?q=" + food + "&app_id=${44b11e80}&app_key=${37ff2a5f86602913a54d1f39187bf}"
+       // https://api.edamam.com/search?q=chicken&app_id=${44b11e80}&app_key=${37ff2a5f86602913a54d1f39187bf}
+        // Write code between the dashes below to hit the queryURL with $ajax, then take the response data
+        // and display it in the div with an id of movie-view
+        // ------YOUR CODE GOES IN THESE DASHES. DO NOT MANUALLY EDIT THE HTML ABOVE.
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
+          $("#food-view").text(JSON.stringify(response));
+        });
+        // -----------------------------------------------------------------------
+      });
+    </script>
+  </div>
+</body>
+
+</html>
