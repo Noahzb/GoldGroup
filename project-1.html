@@ -39,10 +39,23 @@
           url: queryURL,
           method: "GET"
         }).then(function(response) {console.log(response);
-          $("#food-view").html(JSON.stringify("Recipes containing " + response.q))
-          
+          $("#food-view").html(JSON.stringify("Result 1: " + (response.hits[0].recipe.label) + " " + (response.hits[1].recipe.label) + "" +  "Result: 2" + "" +  response.hits[2].recipe.label))
+         img = response.hits[0].recipe.image
+         label = response.hits[0].recipe.label
+         myarray = response.hits
+         console.log(myarray)
+         console.log(img)
+         console.log(label)
+         console.log(myarray[1])
+     
+         
         });
-       
+        var queryWeather = "api.openweathermap.org/data/2.5/weather?zip=94040,us"
+      $.ajax({
+          url: queryWeather,
+          method: "GET"
+        }).then(function(response) {
+          console.log(JSON.stringify(response))});
       });
     </script>
   </div>
