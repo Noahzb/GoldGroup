@@ -21,33 +21,50 @@
     </form>
 
     <!-- We'll be dumping our JSON contents in here -->
-    <div id="food-view"></div>
+    <div id="food-view" class="food-contents"></div>
+    <div id="food-view1" class="food-contents"></div>
+    <div id="food-view2" class="food-contents"></div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-      // This .on("click") function will trigger the AJAX Call
-      $("#find-food").on("click", function(event) {
-        // event.preventDefault() can be used to prevent an event's default behavior.
-        // Here, it prevents the submit button from trying to submit a form when clicked
+      $("#find-food").on("click", function (event) {
         event.preventDefault();
         // Here we grab the text from the input box
         var food = $("#food-input").val();
         // Here we construct our URL
-        var queryURL = "https://api.edamam.com/search?q=" + food + "&app_id=${44b11e80}&app_key=${37ff2a5f86602913a54d1f39187bf}"
-       // https://api.edamam.com/search?q=chicken&app_id=${44b11e80}&app_key=${37ff2a5f86602913a54d1f39187bf}
-        // Write code between the dashes below to hit the queryURL with $ajax, then take the response data
-        // and display it in the div with an id of movie-view
-        // ------YOUR CODE GOES IN THESE DASHES. DO NOT MANUALLY EDIT THE HTML ABOVE.
+        var queryURL = "https://api.edamam.com/search?q=" + food +
+          "&app_id=44b11e80&app_key=37ff2a49a5f86602913a54d1f39187bf&to=10"
+        // https://api.edamam.com/search?q=chicken&app_id=44b11e80&app_key=37ff2a49a5f86602913a54d1f39187bf
         $.ajax({
           url: queryURL,
           method: "GET"
-        }).then(function(response) {
-          $("#food-view").text(JSON.stringify(response));
+        }).then(function (response) {
+          console.log(response);
+          $("#food-view").html(JSON.stringify(response.hits[0].recipe.label) + "<br>" + (response.hits[1].recipe
+            .label) + "<br>"  + response.hits[2].recipe.label) + "<br>"  + (response.hits[3].recipe.label) 
+          img = response.hits[0].recipe.image;
+          img1 = response.hits[1].recipe.image;
+          img2 = response.hits[2].recipe.image;
+
+
+          var imgdisplay = $("<img>").attr("src", img);
+          var imgdisplay1 = $("<img>").attr("src", img1);
+          var imgdisplay2 = $("<img>").attr("src", img2);
+
+          $("#food-view").append(imgdisplay, response.hits[0].recipe.url, response.hits[0].recipe.ingredientlines)
+          $("#food-view1").prepend(imgdisplay1, response.hits[1].recipe.url)
+          $("#food-view2").prepend(imgdisplay2, response.hits[2].recipe.url)
+
+          console.log(myarray)
+          console.log(img)
+          console.log(label)
+          console.log(myarray[1])
         });
-        // -----------------------------------------------------------------------
       });
     </script>
   </div>
 </body>
 
 </html>
+    
