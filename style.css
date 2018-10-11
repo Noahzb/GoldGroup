@@ -1,0 +1,52 @@
+.search-header{
+    text-align: center;
+      background: white;
+      margin: 50px 50px;
+      padding: 75px;
+      opacity: .7;
+  } 
+  
+  .header-image{
+    background-image: url("../images/dinner.jpg");
+    background-repeat: no-repeat;
+    background-size: 1700px 700px;
+    padding: 100px; 
+  }
+  
+  h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 100px;
+      color: black;
+  }
+  
+  input[type=text] {
+      background-color: white;
+      color: black;
+  }
+
+  .label{
+    color: red;
+  }
+
+  .recipe-img{
+    height: 150px;
+    width: 150px;
+    padding: 5px;
+    margin: 10px;
+  }
+
+  .food-view{
+    height: 400px;
+    width: 400px;
+    margin:20px;
+    float: left;
+  }
+
+  .food-display{
+text-align: center;
+  }
+
+  .food-view-holder{
+    background-image: url("../images/vintage-concrete.png");
+  }
+  
